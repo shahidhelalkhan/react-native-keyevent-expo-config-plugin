@@ -99,6 +99,15 @@ const withAndroidMainActivityBody: ConfigPlugin = (config) => {
   // @ts-ignore
   const newConfig = withMainActivity(config, (config) => {
     const newSrc = [
+       "@Override",
+            "public boolean dispatchKeyEvent(KeyEvent event) {",
+            "    if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {",
+            "        KeyEventModule.getInstance().onKeyDownEvent(event.getKeyCode(), event);",
+            "        return false;",
+            "    }",
+            "",
+            "    return super.dispatchKeyEvent(event);",
+            "}",
       '@Override',
       'public boolean onKeyDown(int keyCode, KeyEvent event) {',
       '',
